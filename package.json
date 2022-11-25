@@ -1,0 +1,149 @@
+{
+  "name": "react-library-boilerplate",
+  "version": "1.0.0",
+  "description": "React Typescript Library Boilerplate",
+  "main": "index.js",
+  "module": "index.esm.js",
+  "types": "index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "repository": "https://github.com/deltasge/react-library-boilerplate",
+  "author": "Delta TI",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "rimraf dist && tsc && rollup -c rollup.config.mjs",
+    "dev": "yarn storybook",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "format": "prettier --write \"src/**/*.{ts,tsx,json,js,jsx}\"",
+    "format:check": "prettier --list-different \"src/**/*.{ts,tsx,json,js,jsx}\"",
+    "lint": "yarn lint:script",
+    "lint:script": "eslint ./src --ext .js,.jsx,.ts,.tsx",
+    "hygen": "hygen",
+    "component:new": "hygen component with-prompt",
+    "publish": "npx semantic-release --no-ci"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.2",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/preset-typescript": "^7.18.6",
+    "@commitlint/cli": "^17.3.0",
+    "@commitlint/config-conventional": "^17.3.0",
+    "@mdx-js/react": "^2.1.5",
+    "@rollup/plugin-commonjs": "^23.0.2",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-typescript": "^9.0.2",
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/commit-analyzer": "^9.0.2",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/release-notes-generator": "^10.0.3",
+    "@storybook/addon-actions": "^6.5.13",
+    "@storybook/addon-essentials": "^6.5.13",
+    "@storybook/addon-interactions": "^6.5.13",
+    "@storybook/addon-links": "^6.5.13",
+    "@storybook/builder-webpack5": "^6.5.13",
+    "@storybook/manager-webpack5": "^6.5.13",
+    "@storybook/preset-scss": "^1.0.3",
+    "@storybook/react": "^6.5.13",
+    "@storybook/testing-library": "^0.0.13",
+    "@types/react": "^18.0.25",
+    "@typescript-eslint/eslint-plugin": "^5.44.0",
+    "@typescript-eslint/parser": "^5.44.0",
+    "babel-loader": "^8.3.0",
+    "css-loader": "^6.7.2",
+    "eslint": "^8.28.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.11",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-storybook": "^0.6.7",
+    "html-webpack-plugin": "^5.5.0",
+    "husky": "^8.0.2",
+    "hygen": "^6.2.11",
+    "identity-obj-proxy": "^3.0.0",
+    "prettier": "^2.8.0",
+    "react": "^18.2.0",
+    "rimraf": "^3.0.2",
+    "rollup": "^3.4.0",
+    "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-dts": "^5.0.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.34.1",
+    "sass": "^1.56.1",
+    "sass-loader": "^13.2.0",
+    "style-loader": "^3.3.1",
+    "typescript": "^4.9.3",
+    "webpack": "^5.75.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "yarn": "^1.22"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.10.15",
+    "@mui/styled-engine-sc": "^5.10.14",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "styled-components": "^5.3.6"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "release": {
+    "branches": [
+      "master",
+      "next"
+    ],
+    "preset": "conventionalcommits",
+    "plugins": [
+      [
+        "@semantic-release/commit-analyzer",
+        {
+          "releaseRules": [
+            {
+              "type": "revert",
+              "release": "patch"
+            },
+            {
+              "type": "build",
+              "release": "patch"
+            }
+          ]
+        }
+      ],
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/changelog",
+        {
+          "changelogTitle": "# Changelog"
+        }
+      ],
+      [
+        "@semantic-release/npm",
+        {
+          "pkgRoot": "dist"
+        }
+      ],
+      [
+        "@semantic-release/git",
+        {
+          "message": "chore(release): ${nextRelease.version} [skip ci]",
+          "assets": [
+            "CHANGELOG.md"
+          ]
+        }
+      ]
+    ]
+  }
+}
