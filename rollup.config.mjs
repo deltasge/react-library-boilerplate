@@ -61,6 +61,7 @@ export default
           src: "package.json",
           dest: "dist",
           transform: (content) => {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const { scripts, devDependencies, husky, release, engines, ...keep } = JSON.parse(
               content.toString()
             );
